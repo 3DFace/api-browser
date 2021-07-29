@@ -1,0 +1,339 @@
+html, body, form {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+.contents {
+	margin-bottom: 2em;
+}
+
+td, input, button, select, textarea, pre {
+	font-size: 10pt;
+	padding: 2px;
+}
+
+button {
+	padding: 4px 12px;
+}
+
+.api_url {
+	padding: 10px;
+}
+
+.api_url input {
+	width: 30em;
+}
+
+button {
+	margin: 4px 4px 4px 0;
+}
+
+.field {
+	color: #900;
+	font-family: "Courier New", Courier, monospace, serif;
+	padding: 1px 8px;
+}
+
+code {
+	color: #055;
+}
+
+li {
+	margin: 5pt;
+	line-height: 1.2em;
+}
+
+p {
+	line-height: 1.2em;
+}
+
+.services {
+	border: 1px solid #ddd;
+	padding-top: 8px;
+}
+
+.services a:link, a:visited {
+	color: #00a;
+	text-decoration: none;
+}
+
+.services a:link:hover, a:visited:hover {
+	color: #c0a;
+}
+
+.url_history {
+
+}
+
+.domain-header {
+	margin-top: 6px;
+	vertical-align: middle;
+	height: 24px;
+}
+
+.domain-header a {
+	color: black;
+}
+
+.domain-header img {
+	vertical-align: middle;
+}
+
+.domain-name {
+	display: inline-block;
+	margin-right: 4px;
+}
+
+.domain-items {
+	margin-left: 40px;
+}
+
+.domain-item {
+	height: 22px;
+	cursor: pointer;
+	padding: 1px 4px;
+}
+
+.domain-item:hover {
+	background-color: #eeffee;
+}
+
+.domain-item.active {
+	background-color: #ddffdd;
+}
+
+.url_remove {
+	color: red;
+	float: right;
+	z-index: 1;
+}
+
+.container {
+}
+
+.container-header {
+	vertical-align: middle;
+	height: 30px;
+}
+
+.container-header img {
+	vertical-align: middle;
+}
+
+.container-name {
+	display: inline-block;
+	font-size: 12pt;
+	margin-right: 4px;
+}
+
+.container-desc {
+	font-size: 9pt;
+	font-style: italic;
+	color: #444;
+}
+
+.container-items {
+	margin-left: 22px;
+}
+
+.service {
+	/*border: 1px solid white;*/
+	/*background-color: #dfd;*/
+}
+
+.service-header {
+	vertical-align: middle;
+	height: 30px;
+}
+
+.header-helper {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;;
+	padding: 0;
+}
+
+.service-header img {
+	vertical-align: middle;
+}
+
+.service-name {
+	display: inline-block;
+	font-size: 12pt;
+	margin-right: 4px;
+}
+
+.service-full-name {
+	font-size: 16pt;
+	font-family: "Courier New", Courier, monospace, serif;
+	color: #666;
+	float: right;
+	padding: 8px;
+}
+
+.service-desc {
+	font-size: 9pt;
+	font-style: italic;
+	color: #444;
+}
+
+.service-help {
+	font-family: "Courier New", Courier, monospace, serif;
+	font-size: 9pt;
+	vertical-align: super;
+}
+
+.service-methods {
+	margin-left: 22px;
+}
+
+.doc-link:after {
+	/*content: url("../images/link-ext.png");*/
+}
+
+.method {
+	background-color: #ddd;
+	padding: 0;
+	margin: 1px;
+	/*border: 1px solid #fff*/
+}
+
+.method_name {
+	font-weight: bold;
+	padding: 8px;
+}
+
+.method_name img {
+	vertical-align: middle;
+}
+
+.method-desc {
+	font-size: 9pt;
+	font-style: italic;
+	font-weight: normal;
+	color: #777;
+	margin-left: 24px;
+}
+
+.method-desc-text {
+	white-space:pre-wrap;
+}
+
+.method-progress {
+	visibility: hidden;
+	margin-left: -22px;
+}
+
+.method_body {
+	padding: 8px 32px;
+	background-color: #d6d6d6;
+}
+
+.method_doc {
+	color: #666;
+}
+
+.method-help {
+	font-family: "Courier New", Courier, monospace, serif;
+	font-size: 9pt;
+	vertical-align: super;
+	font-weight: normal;
+}
+
+.method-help a {
+	color: #006;
+}
+
+.param {
+	margin: 4px 0 16px;
+	vertical-align: baseline;
+}
+
+.param .value_row {
+	vertical-align: top;
+}
+
+.param .value_row label {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 2px;
+}
+
+.param .value_row label input {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.param .param_name {
+	color: red;
+}
+
+.param.valid .param_name {
+	color: #000;
+}
+
+.param .param_type {
+	font-style: italic;
+	color: #999;
+}
+
+.param .param_desc {
+	font-size: 8pt;
+	font-style: italic;
+	color: #777;
+}
+
+.param input[type="text"], .param input[type="password"], .param textarea {
+	width: 24em;
+	margin-top: 4px;
+	font-family: Consolas, "Courier New", Courier, monospace, serif;
+	font-size: 11pt;
+}
+
+.param textarea {
+	white-space: pre;
+	overflow: auto;
+}
+
+.method span.toggle {
+	color: #444;
+	font-size: 8pt;
+}
+
+.param_name {
+
+}
+
+.exec_result {
+	color: #080;
+	font-family: "Courier New", Courier, monospace, serif;
+	font-size: 10pt;
+}
+
+.exec_error {
+	color: #a00;
+	font-family: "Courier New", Courier, monospace, serif;
+	font-size: 10pt;
+}
+
+.deprecated {
+	text-decoration: line-through;
+}
+
+.exec_result pre, .exec_error pre {margin-top: 2px;}
+
+.copy {float: left; margin-left: -24px; cursor: copy; opacity: 0.5;}
+
+.doc {margin: 8px;}
+
+.hidden {visibility: hidden;}
+.visible {visibility: visible;}

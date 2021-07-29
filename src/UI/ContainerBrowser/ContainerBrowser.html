@@ -1,0 +1,91 @@
+<script type="text/html" id="container">
+	<div class="container">
+		<div class="container-header" data-bind="visible: name">
+			<a class="container-toggle" data-bind="attr: {name: name, href: '#'+name}, click: toggle">
+				<img src="../Image/nolines_minus.gif" data-bind="visible: expanded">
+				<img src="../Image/nolines_plus.gif" data-bind="hidden: expanded">
+				<img src="../Image/progress.gif" data-bind="visible: progress">
+				<img src="../Image/folder.gif" data-bind="hidden: progress">
+				<span class="container-name" data-bind="text: name"></span>
+			</a>
+			<span class="container-desc" data-bind="text: desc"></span>
+		</div>
+		<div data-bind="foreach: items, visible: expanded" class="container-items">
+			<div data-bind="template: {name: template, data: $data}"></div>
+		</div>
+	</div>
+</script>
+
+<script type="text/html" id="service">
+	<div class="service">
+		<div class="service-header">
+			<div class="header-helper">
+				<a class="service-toggle" data-bind="attr: {name: fullName, href: '#'+fullName}, click: toggle">
+					<img src="../Image/nolines_minus.gif" data-bind="visible: expanded">
+					<img src="../Image/nolines_plus.gif" data-bind="hidden: expanded">
+					<img src="../Image/service-icon.png">
+					<span class="service-name" data-bind="text: name"></span>
+				</a>
+
+				<span class="service-desc"><span data-bind="text: desc"></span></span>
+
+			</div>
+		</div>
+		<div class="service-methods" data-bind="visible: expanded">
+			<!--<div class="service-full-name" data-bind="text: fullName"></div>-->
+			<div data-bind="foreach: methods, visible: expanded">
+				<div class="method">
+					<div class="method_name" data-bind="attr:{ title: doc}">
+						<a class="method-toggle" href="#" data-bind="toggle: expanded">
+							<img src="../Image/nolines_minus.gif" data-bind="visible: expanded">
+							<img src="../Image/nolines_plus.gif" data-bind="hidden: expanded">
+							<span data-bind="text: name, css: {deprecated: deprecated}"></span>
+						</a>
+						<div class="method-desc">
+							<span class="method-desc-text" data-bind="html: first_desc"></span>
+							<span class="method-desc-text" data-bind="visible: expanded, html: more_desc"></span>
+						</div>
+					</div>
+					<div class="method_body" data-bind="visible: expanded">
+						<form data-bind="submit: execute">
+							<div data-bind="foreach: params" class="params">
+								<div class="param" data-bind="css: {valid: valid}">
+									<span data-bind="text: name" class="param_name">
+									</span>
+									<span data-bind="visible: data_type" class="param_type">
+										(<span data-bind="text: data_type"></span>)
+									</span>
+									<span data-bind="visible: desc" class="param_desc">
+										<br><span data-bind="text: desc"></span>
+									</span>
+
+									<div class="value_row">
+										<textarea data-bind="value: value, visible: multiline" class="param_value" rows="6"></textarea>
+										<input data-bind="textInput: value, attr: {type: type}, hidden: multiline" class="param_value"/>
+										<label><input data-bind="checked: json" type="checkbox"><span class="toggle">JSON</span></label>
+										<label><input data-bind="checked: multiline" type="checkbox"><span class="toggle">Multiline</span></label>
+										<br>
+									</div>
+								</div>
+							</div>
+							<img src="../Image/progress.gif" class="method-progress" data-bind="css: {visible: progress}">
+							<button type="submit">вызвать</button><button data-bind="click: clear">очистить</button>
+							<div class="exec_result" data-bind="if: success">
+								<img src="../Image/clipboard.png" class="copy"
+									data-bind="click: nextToClipboard" title="В карман"/><pre
+									data-bind="text: result"></pre>
+							</div>
+							<div class="exec_error" data-bind="if: failure">
+								<img src="../Image/clipboard.png" class="copy"
+									data-bind="click: nextToClipboard" title="В карман"/><pre
+									data-bind="text: error"></pre>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<div data-bind="template: {name: 'container', data: $data}" class="services"></div>

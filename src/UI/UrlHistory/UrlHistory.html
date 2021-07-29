@@ -1,0 +1,22 @@
+<div data-bind="foreach: url_history">
+	<div class="domain">
+		<div class="domain-header">
+			<a class="domain-toggle" data-bind="toggle: expanded" href="javascript: void(0);">
+				<img src="../Image/nolines_minus.gif" data-bind="visible: expanded">
+				<img src="../Image/nolines_plus.gif" data-bind="hidden: expanded">
+				<img src="../Image/home.png">
+				<span class="domain-name" data-bind="text: name"></span>
+			</a>
+		</div>
+
+		<div data-bind="visible: expanded, foreach: items" class="domain-items">
+			<div class="domain-item" data-bind="css: {active: active}, click: $root.apply_url">
+				<a href="javascript: void(0);">
+					<span data-bind="text: value"></span>
+				</a>
+				<a href="javascript: void(0);" data-bind="click: $root.remove_url" class="url_remove">&times;</a>
+			</div>
+		</div>
+
+	</div>
+</div>

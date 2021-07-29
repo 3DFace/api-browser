@@ -1,0 +1,28 @@
+{
+  "name": "api-browser",
+  "version": "0.0.1",
+  "description": "",
+  "main": "Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --optimize-minimize",
+    "watch": "webpack --watch"
+  },
+  "author": "Ponomarev Denis",
+  "license": "Proprietary",
+  "devDependencies": {
+    "webpack": "2.1.0-beta.21",
+    "file-loader": "~0.8.5",
+    "html-loader": "~0.4.3",
+    "url-loader": "~0.5.7",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.0",
+    "urijs": "^1.17.1"
+  },
+  "dependencies": {
+    "core-js": "^2.2.2",
+    "knockout": "^3.4.0",
+    "rpc_client": "git://github.com/3DFace/rpc_client_js.git",
+    "hjson": "2.4.1"
+  }
+}

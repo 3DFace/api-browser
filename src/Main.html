@@ -1,0 +1,124 @@
+<div>
+	<table class="api_url">
+		<tr valign="top">
+			<td>URL</td>
+			<td>
+				<input data-bind="value: rpc_url">
+				<div data-bind="view: url_history" class="url_history"></div>
+			</td>
+		</tr>
+	</table>
+	<div data-bind="view: contents" class="contents"></div>
+</div>
+
+<div class="doc">
+
+	<a name="request"><h3>Запрос</h3></a>
+
+	<p>Запросы должны отравляться методом <code>POST</code> на адрес <code>API URL</code>.</p>
+
+	<p>Формат запросов - <code>JSON</code>.</p>
+
+	<p>Для работы с сервисами, требующими авторизации от RPC-клиента может потребоваться поддержка приема/отправки сессионных кук.</p>
+	<p>Либо возмножна работа через Basic-Auth - зависит от реилизации конкретного сервиса.</p>
+
+	<p>
+		Запрос представляет собой структуру со следующими полями:
+	<ul>
+		<li>
+			<span class="field">id</span> - опциональный идентификатор запроса, если присутствует, то сервер возвращает его значение в ответе.
+		<li>
+			<span class="field">calls</span> - список вызовов, каждый элемент которого представляет собой структуру со следующими полями:
+			<ul>
+				<li><span class="field">service</span> - название сервиса
+				<li><span class="field">method</span> - название метода
+				<li><span class="field">parameters</span> - опциональный список параметров
+			</ul>
+	</ul>
+
+
+	<i>Псевдозапрос для наглядности</i>
+	<pre><code class="json">{
+  "id": 1,
+  "calls": [
+    {
+      "service": "service_name1",
+      "method": "method_name2",
+      "parameters": ["param", "param"]
+    },
+    {
+      "service": "service_name2",
+      "method": "method_name2",
+      "parameters": ["param", "param"]
+    }
+  ]
+}
+</code></pre>
+
+	<a name="exec"><h3>Выполнение</h3></a>
+
+	Вызовы (calls) обрабатываются последовательно в том порядке, в котором они были переданы в списке.
+
+	<a name="response"><h3>Ответ</h3></a>
+
+	<p>
+		Ответ на запрос представляет собой структуру со следующими полями:
+
+	<ul>
+		<li><span class="field">id</span> - опциональный идентификатор (передается, если присутствовал в запросе)
+		<li><span class="field">status</span> - <code>true|false</code> - результат обработки запроса.
+			Если запрос успешно был распарсен сервером и запрашиваемые сервисы/методы действительно существуют, то status будет
+			<code>true</code>.
+			Если что-то не так с запросом, то status будет <code>false</code>.
+		<li><span class="field">result</span> -
+			Если <code>status=false</code>, то здесь содержится информация об ошибке (см. ниже).
+			Если <code>status=true</code>, то в
+			<code>result</code> находится список результатов вызовов сервисных методов.
+			Результаты расположены в том же порядке, в котором были расположены соответствующие вызовы в запросе.
+			Каждый элемент списка - структура:
+			<ul>
+				<li><span class="field">status</span> -
+					<code>true|false</code> - Если метод успешно отработал и не упал, то будет true. Если fail, то будет
+					<code>false</code>
+				<li><span class="field">result</span> -
+					Если <code>status=true</code>, то здесь будет значение которое вернул метод.
+					Если <code>status=false</code>, то здесь будет информация об ошибке (см. ниже)
+			</ul>
+
+	</ul>
+
+	Информация об ошибке - структура вида:
+	<ul>
+		<li>
+			<span class="field">type</span> - тип ошибки, как правило, это название класса-исключения на сервере (что-то типа
+			<code>\oz\rpc\RpcException</code>)
+		<li><span class="field">message</span> - сообщение ошибки
+		<li><span class="field">code</span> - код ошибки (если раработчик предусмотрел, иначе - 0)
+	</ul>
+
+	<i>Псевдоответ для наглядности</i>
+	<pre><code class="json">{
+  "id": 1,
+  "status": true,
+  "result": [
+    {
+      "status": true,
+      "result": "some result"
+    },
+    {
+      "status": false,
+      "result": {
+        "type": "SomeException",
+        "message": "Some error message",
+        "code": 1
+      }
+    }
+  ]
+}
+</code></pre>
+
+	По такому ответу можно сказать, что ошибок на протокольном уровне нет (внешний <code>status=true</code>).
+	Первый вызов отработал успешно (<code>status=true</code>, в <code>result</code> результат вызова).
+	Второй - сфейлился (<code>status=false</code>, в <code>result</code> информация об ошибке).
+
+</div>
