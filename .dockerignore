@@ -1,4 +1,4 @@
 .idea
-web/build
+.git
 node_modules
-.env
+web/build

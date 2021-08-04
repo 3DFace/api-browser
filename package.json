@@ -4,9 +4,11 @@
   "description": "",
   "main": "Main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --optimize-minimize",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "dev-run": "docker-compose up",
+    "image": "docker image build --tag api-browser:main .",
+    "push": "docker tag api-browser:main localhost:32000/api-browser:main && docker push localhost:32000/api-browser:main"
   },
   "author": "Ponomarev Denis",
   "license": "Proprietary",
@@ -21,8 +23,8 @@
   },
   "dependencies": {
     "core-js": "^2.2.2",
+    "hjson": "2.4.1",
     "knockout": "^3.4.0",
-    "rpc_client": "git://github.com/3DFace/rpc_client_js.git",
-    "hjson": "2.4.1"
+    "rpc_client": "git://github.com/3DFace/rpc_client_js.git"
   }
 }

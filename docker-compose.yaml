@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  web:
+    image: nginx:1.21-alpine
+    volumes:
+      - "./web/:/usr/share/nginx/html"
+    ports:
+    - 8080:80
