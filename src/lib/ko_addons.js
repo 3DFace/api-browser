@@ -5,10 +5,10 @@ import ko from 'knockout';
 require('./I18nBindingProvider');
 
 ko.subscribable.fn.persist = function(key){
-	var def = this.peek();
+	var def_check = JSON.stringify(this.peek());
 	restore_pref(key, this);
 	this.subscribe(function(val){
-		if(val === def){
+		if(JSON.stringify(val) === def_check){
 			remove_pref(key);
 		}else{
 			store_pref(key, val);
