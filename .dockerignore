@@ -2,3 +2,7 @@
 .git
 node_modules
 web/build
+.gitignore
+docker-compose.yaml
+Makefile
+skaffold.yaml

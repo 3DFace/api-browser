@@ -1,14 +1,21 @@
 # nonk8s
-apiVersion: skaffold/v2beta19
+apiVersion: skaffold/v2beta20
 kind: Config
 metadata:
   name: api-browser
 build:
   artifacts:
-  - image: localhost:32000/api-browser
-    docker:
-      dockerfile: Dockerfile
+    - image: localhost:32000/api-browser-dev
+      docker:
+        dockerfile: Dockerfile
 deploy:
-  kubectl:
-    manifests:
-    - k8s-manifest.yaml
+  helm:
+    releases:
+      - name: api-browser-dev
+        chartPath: chart
+        artifactOverrides:
+          image: localhost:32000/api-browser-dev
+        setValueTemplates:
+          deploymentHost: '{{.DEPLOYMENT_HOST}}'
+        imageStrategy:
+          helm: {}

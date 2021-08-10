@@ -1,2 +1,4 @@
-imageRegistry: localhost:3200
-deploymentHost: dev-vm.localhost
+image:
+  repository: localhost:32000/api-browser
+  tag: main
+deploymentHost: localhost
