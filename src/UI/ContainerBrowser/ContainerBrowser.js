@@ -117,9 +117,14 @@ function ContainerBrowser(path, name, desc, batch, level){
 
 				var param = this;
 
-				param.name = p;
-				param.data_type = params_desc_map[p] && params_desc_map[p].data_type;
-				param.desc = params_desc_map[p] && params_desc_map[p].desc;
+				var name =  p.name || p;
+				var type =  p.type || null;
+				param.name = name;
+				param.data_type = params_desc_map[name] && params_desc_map[name].data_type;
+				param.desc = params_desc_map[name] && params_desc_map[name].desc;
+				if(type !== null){
+					param.data_type = type.split('\\').pop();
+				}
 
 				param.value = ko.observable();
 				param.isPassword = param.name.indexOf("pass") >= 0;
